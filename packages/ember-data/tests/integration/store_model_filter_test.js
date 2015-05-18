@@ -19,7 +19,9 @@ module("DS.Model updating", {
     Person = DS.Model.extend({ name: DS.attr('string') });
   },
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
     Person = null;
     array = null;
   }

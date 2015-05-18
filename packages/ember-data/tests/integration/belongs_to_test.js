@@ -60,10 +60,12 @@ module("Belongs-To Relationships", {
   },
 
   teardown: function() {
-    serializer.destroy();
-    adapter.destroy();
-    store.destroy();
-    App.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      adapter.destroy();
+      store.destroy();
+      App.destroy();
+    });
     Ember.lookup = originalLookup;
   }
 });

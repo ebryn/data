@@ -6,7 +6,9 @@ module('Inverse Relationships', {
   },
 
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
   }
 });
 

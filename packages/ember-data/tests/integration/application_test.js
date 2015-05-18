@@ -23,7 +23,9 @@ if (Ember.Application.initializer) {
     },
 
     teardown: function() {
-      app.destroy();
+      Ember.run(function() {
+        app.destroy();
+      });
       Ember.BOOTED = false;
     }
   });

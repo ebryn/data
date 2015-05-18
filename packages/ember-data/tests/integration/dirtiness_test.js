@@ -169,5 +169,7 @@ test("When adding a newly created record to a hasMany relationship, the parent s
   equal(post.get('isDirty'), false, "The record should no longer be dirty");
   equal(post.get('isSaving'), false, "The record should no longer be saving");
 
-  App.destroy();
+  Ember.run(function() {
+    App.destroy();
+  });
 });

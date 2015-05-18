@@ -61,9 +61,11 @@ module("Has-Many Polymorphic Relationships", {
   },
 
   teardown: function() {
-    serializer.destroy();
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      adapter.destroy();
+      store.destroy();
+    });
     Ember.lookup = originalLookup;
   }
 });

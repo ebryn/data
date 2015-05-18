@@ -101,7 +101,7 @@ DS._Mappable = Ember.Mixin.create({
       classMap.forEach(eachMap, this);
     }
 
-    function eachMap(key, value) {
+    function eachMap(value, key) {
       var transformedKey = (klass.transformMapKey || transformMapKey)(key, value);
       var transformedValue = (klass.transformMapValue || transformMapValue)(key, value);
 

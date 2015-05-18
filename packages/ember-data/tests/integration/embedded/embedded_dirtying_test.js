@@ -95,8 +95,10 @@ module("Dirtying of Embedded Records", {
   },
 
   teardown: function() {
-    store.destroy();
-    App.destroy();
+    Ember.run(function() {
+      store.destroy();
+      App.destroy();
+    });
   }
 });
 

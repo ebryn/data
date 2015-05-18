@@ -24,9 +24,11 @@ module("Client-side ID Generation", {
   },
 
   teardown: function() {
-    serializer.destroy();
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

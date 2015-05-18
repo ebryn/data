@@ -16,8 +16,10 @@ module("Persisting Records", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -25,7 +27,7 @@ test("When a store is committed, the adapter's `commit` method should be called 
   expect(2);
 
   adapter.commit = function(store, records) {
-    this.groupByType(records.updated).forEach(function(type, set) {
+    this.groupByType(records.updated).forEach(function(set, type) {
       equal(type, Person, "the type is correct");
       equal(get(set.toArray(), 'length'), 1, "the array is the right length");
 
@@ -51,7 +53,7 @@ test("When a store is committed, the adapter's `commit` method should be called 
   adapter.commit = function(store, records) {
     equal(get(records.updated.toArray(), 'length'), 0, "no records are marked as being updated");
 
-    this.groupByType(records.created).forEach(function(type, set) {
+    this.groupByType(records.created).forEach(function(set, type) {
       equal(type, Person, "the type is correct");
       equal(get(set.toArray(), 'length'), 1, "the array is the right length");
 
@@ -92,7 +94,7 @@ test("when a store is committed, the adapter's `commit` method should be called 
     equal(records.updated.isEmpty(), true, "no records are marked as updated");
     equal(records.created.isEmpty(), true, "no records are marked as created");
 
-    this.groupByType(records.deleted).forEach(function(type, set) {
+    this.groupByType(records.deleted).forEach(function(set, type) {
       equal(type, Person, "the type is correct");
       equal(get(set.toArray(), 'length'), 1, "the array is the right length");
 

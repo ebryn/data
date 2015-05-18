@@ -57,8 +57,10 @@ module("Has-Many Relationships", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+    });
     Ember.lookup = originalLookup;
   }
 });

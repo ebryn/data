@@ -25,9 +25,11 @@ module("Transactions and Relationships", {
   },
 
   teardown: function() {
-    if (transaction) { transaction.destroy(); }
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      if (transaction) { transaction.destroy(); }
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

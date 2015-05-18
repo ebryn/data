@@ -272,7 +272,7 @@ DS.Model = Ember.Object.extend(Ember.Evented, LoadPromise, {
   adapterDidCommit: function() {
     var attributes = get(this, 'data');
 
-    get(this.constructor, 'attributes').forEach(function(name, meta) {
+    get(this.constructor, 'attributes').forEach(function(meta, name) {
       attributes[name] = get(this, name);
     }, this);
 
@@ -293,7 +293,7 @@ DS.Model = Ember.Object.extend(Ember.Evented, LoadPromise, {
   reloadHasManys: function() {
     var relationships = get(this.constructor, 'relationshipsByName');
     this.updateRecordArraysLater();
-    relationships.forEach(function(name, relationship) {
+    relationships.forEach(function(relationship, name) {
       if (relationship.kind === 'hasMany') {
         this.hasManyDidChange(relationship.key);
       }

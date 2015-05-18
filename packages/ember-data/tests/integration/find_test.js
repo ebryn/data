@@ -15,8 +15,10 @@ module("Finding Records", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

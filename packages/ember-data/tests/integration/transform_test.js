@@ -22,9 +22,11 @@ module("Record Attribute Transforms", {
   },
 
   teardown: function() {
-    serializer.destroy();
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -55,7 +57,9 @@ module("Default DS.Transforms", {
   },
 
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
   }
 });
 
@@ -148,9 +152,11 @@ module("Enum Transforms", {
     });
   },
   teardown: function() {
-    serializer.destroy();
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

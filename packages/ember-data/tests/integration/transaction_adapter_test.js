@@ -21,9 +21,11 @@ module("DS.Transaction and DS.Adapter Integration", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
-    transaction.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+      transaction.destroy();
+    });
     Post = null;
     Comment = null;
   }

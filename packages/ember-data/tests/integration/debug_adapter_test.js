@@ -25,7 +25,9 @@ module("DS.DebugAdapter", {
     });
   },
   teardown: function() {
-    App.destroy();
+    Ember.run(function() {
+      App.destroy();
+    });
   }
 });
 

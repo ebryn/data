@@ -17,9 +17,11 @@ module("Finding All Records of a Type", {
   },
 
   teardown: function() {
-    if (allRecords) { allRecords.destroy(); }
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      if (allRecords) { allRecords.destroy(); }
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

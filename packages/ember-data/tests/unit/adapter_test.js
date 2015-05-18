@@ -9,7 +9,9 @@ module("DS.Adapter", {
   },
 
   teardown: function() {
-    adapter.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+    });
   }
 });
 
@@ -81,7 +83,9 @@ module("DS.Adapter - Transformations", {
   },
 
   teardown: function() {
-    serializerMock.destroy();
+    Ember.run(function() {
+      serializerMock.destroy();
+    });
   }
 });
 
@@ -190,7 +194,9 @@ module("DS.Adapter - Mapping", {
   },
 
   teardown: function() {
-    serializerMock.destroy();
+    Ember.run(function() {
+      serializerMock.destroy();
+    });
   }
 });
 

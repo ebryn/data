@@ -482,7 +482,7 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
           store = this;
 
       Ember.assert("You tried to find a record but you have no adapter (for " + type + ")", adapter);
-      Ember.assert("You tried to find a record but your adapter does not implement `find`", adapter.find);
+      Ember.assert("You tried to find a record but your adapter does not implement `find`", typeof adapter.find === 'function');
 
       var thenable = adapter.find(this, type, id);
 
@@ -504,7 +504,7 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
 
     Ember.assert("You cannot update a record without an ID", id);
     Ember.assert("You tried to update a record but you have no adapter (for " + type + ")", adapter);
-    Ember.assert("You tried to update a record but your adapter does not implement `find`", adapter.find);
+    Ember.assert("You tried to update a record but your adapter does not implement `find`", typeof adapter.find === 'function');
 
     var thenable = adapter.find(this, type, id);
 
@@ -622,9 +622,8 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
       referencesByTypeMap.get(reference.type).push(reference);
     });
 
-    forEach(referencesByTypeMap, function(type) {
-      var references = referencesByTypeMap.get(type),
-          ids = map(references, function(reference) { return reference.id; });
+    forEach(referencesByTypeMap, function(references, type) {
+      var ids = map(references, function(reference) { return reference.id; });
 
       var adapter = this.adapterForType(type);
 
@@ -770,7 +769,7 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
     var adapter = this.adapterForType(type);
 
     Ember.assert("You tried to load a query but you have no adapter (for " + type + ")", adapter);
-    Ember.assert("You tried to load a query but your adapter does not implement `findQuery`", adapter.findQuery);
+    Ember.assert("You tried to load a query but your adapter does not implement `findQuery`", typeof adapter.findQuery === 'function');
 
     adapter.findQuery(this, type, query, array);
 
@@ -804,7 +803,7 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
     set(array, 'isUpdating', true);
 
     Ember.assert("You tried to load all records but you have no adapter (for " + type + ")", adapter);
-    Ember.assert("You tried to load all records but your adapter does not implement `findAll`", adapter.findAll);
+    Ember.assert("You tried to load all records but your adapter does not implement `findAll`", typeof adapter.findAll === 'function');
 
     adapter.findAll(this, type, sinceToken);
 

@@ -210,9 +210,9 @@ DS.Transaction = Ember.Object.extend({
     var commitDetails = get(this, 'commitDetails'),
         relationships = get(this, 'relationships');
 
-    forEach(commitDetails, function(adapter, commitDetails) {
+    forEach(commitDetails, function(commitDetails, adapter) {
       Ember.assert("You tried to commit records but you have no adapter", adapter);
-      Ember.assert("You tried to commit records but your adapter does not implement `commit`", adapter.commit);
+      Ember.assert("You tried to commit records but your adapter does not implement `commit`", typeof adapter.commit === 'function');
 
       adapter.commit(store, commitDetails);
     });

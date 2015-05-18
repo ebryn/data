@@ -15,8 +15,10 @@ module("Transactions", {
   },
 
   teardown: function() {
-    if (transaction) { transaction.destroy(); }
-    store.destroy();
+    Ember.run(function() {
+      if (transaction) { transaction.destroy(); }
+      store.destroy();
+    });
   }
 });
 

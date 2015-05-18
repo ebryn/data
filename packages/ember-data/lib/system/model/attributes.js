@@ -30,7 +30,7 @@ DS.Model.reopenClass({
 
 DS.Model.reopen({
   eachAttribute: function(callback, binding) {
-    get(this.constructor, 'attributes').forEach(function(name, meta) {
+    get(this.constructor, 'attributes').forEach(function(meta, name) {
       callback.call(binding, name, meta);
     }, binding);
   },

@@ -18,7 +18,9 @@ module("DS.Model Class Method Aliases", {
   },
 
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
   }
 });
 

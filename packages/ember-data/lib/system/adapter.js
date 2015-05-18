@@ -564,7 +564,9 @@ DS.Adapter = Ember.Object.extend(DS._Mappable, {
         configurations = this._configurationsMap;
 
     mappings.forEach(serializer.map, serializer);
-    configurations.forEach(serializer.configure, serializer);
+    configurations.forEach(function(value, key) {
+      serializer.configure(key, value);
+    });
   },
 
   /**
@@ -775,15 +777,15 @@ DS.Adapter = Ember.Object.extend(DS._Mappable, {
       return filteredSet;
     }
 
-    this.groupByType(commitDetails.created).forEach(function(type, set) {
+    this.groupByType(commitDetails.created).forEach(function(set, type) {
       this.createRecords(store, type, filter(set));
     }, this);
 
-    this.groupByType(commitDetails.updated).forEach(function(type, set) {
+    this.groupByType(commitDetails.updated).forEach(function(set, type) {
       this.updateRecords(store, type, filter(set));
     }, this);
 
-    this.groupByType(commitDetails.deleted).forEach(function(type, set) {
+    this.groupByType(commitDetails.deleted).forEach(function(set, type) {
       this.deleteRecords(store, type, filter(set));
     }, this);
   },

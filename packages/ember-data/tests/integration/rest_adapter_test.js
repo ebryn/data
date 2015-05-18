@@ -19,7 +19,9 @@ module("REST Adapter", {
   },
 
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
     Ember.$.ajax = originalAjax;
   }
 });

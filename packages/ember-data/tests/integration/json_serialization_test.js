@@ -11,9 +11,11 @@ module("Adapter serialization with attributes only", {
     serializer = DS.JSONSerializer.create();
   },
   teardown: function() {
-    post.destroy();
-    serializer.destroy();
-    store.destroy();
+    Ember.run(function() {
+      post.destroy();
+      serializer.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -79,8 +81,10 @@ module("Adapter serialization with an ID", {
     serializer = DS.JSONSerializer.create();
   },
   teardown: function() {
-    serializer.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -134,10 +138,12 @@ module("Adapter serialization with relationships", {
   },
 
   teardown: function() {
-    post.destroy();
-    comment.destroy();
-    serializer.destroy();
-    store.destroy();
+    Ember.run(function() {
+      post.destroy();
+      comment.destroy();
+      serializer.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -235,8 +241,10 @@ module("Adapter serialization with metadata", {
   },
 
   teardown: function() {
-    serializer.destroy();
-    store.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+      store.destroy();
+    });
   }
 });
 

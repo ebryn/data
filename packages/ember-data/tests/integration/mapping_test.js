@@ -12,8 +12,10 @@ module("Mapping Attributes", {
   },
 
   teardown: function() {
-    window.Person = null;
-    if (store) { store.destroy(); }
+    Ember.run(function() {
+      window.Person = null;
+      if (store) { store.destroy(); }
+    });
   }
 });
 

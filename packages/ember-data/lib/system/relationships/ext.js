@@ -41,7 +41,9 @@ DS.Model.reopen({
   */
   didDefineProperty: function(proto, key, value) {
     // Check if the value being set is a computed property.
-    if (value instanceof Ember.Descriptor) {
+    var possibleDesc = value;
+    var desc = possibleDesc !== null && typeof possibleDesc === "object" && possibleDesc.isDescriptor ? possibleDesc : undefined;
+    if (desc) {
 
       // If it is, get the metadata for the relationship. This is
       // populated by the `DS.belongsTo` helper when it is creating
@@ -401,7 +403,7 @@ DS.Model.reopenClass({
     @param {any} binding the value to which the callback's `this` should be bound
   */
   eachRelationship: function(callback, binding) {
-    get(this, 'relationshipsByName').forEach(function(name, relationship) {
+    get(this, 'relationshipsByName').forEach(function(relationship, name) {
       callback.call(binding, name, relationship);
     });
   },

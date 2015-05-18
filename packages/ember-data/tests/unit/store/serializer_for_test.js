@@ -10,10 +10,12 @@ module("DS.Store - serializerFor - unit/store/serializer_for_test", {
   },
 
   teardown: function() {
-    container.destroy();
-    store.destroy();
+    Ember.run(function() {
+      container.destroy();
+      store.destroy();
 
-    if (app) { app.destroy(); }
+      if (app) { app.destroy(); }
+    });
   }
 });
 

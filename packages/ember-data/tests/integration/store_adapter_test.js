@@ -34,8 +34,10 @@ module("DS.Store and DS.Adapter integration test", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

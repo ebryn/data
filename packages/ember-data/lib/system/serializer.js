@@ -1070,7 +1070,7 @@ DS.Serializer = Ember.Object.extend({
 
   /* MAPPING CONVENIENCE */
 
-  map: function(type, mappings) {
+  map: function(mappings, type) {
     this.mappings.set(type, mappings);
   },
 
@@ -1122,7 +1122,7 @@ DS.Serializer = Ember.Object.extend({
         plural,
         self = this;
 
-    aliases.forEach(function(key, type) {
+    aliases.copy().forEach(function(type, key) {
       plural = self.pluralize(key);
       Ember.assert("The '" + key + "' alias has already been defined", !aliases.get(plural));
       aliases.set(plural, type);
@@ -1130,7 +1130,7 @@ DS.Serializer = Ember.Object.extend({
 
     // This map is only for backward compatibility with the `sideloadAs` option.
     if (sideloadMapping) {
-      sideloadMapping.forEach(function(key, type) {
+      sideloadMapping.forEach(function(type, key) {
         Ember.assert("The '" + key + "' alias has already been defined", !aliases.get(key) || (aliases.get(key)===type) );
         aliases.set(key, type);
       });
@@ -1147,7 +1147,7 @@ DS.Serializer = Ember.Object.extend({
         reifiedAliases = Ember.Map.create(),
         foundType;
 
-    aliases.forEach(function(key, type) {
+    aliases.forEach(function(type, key) {
       if (typeof type === 'string') {
         foundType = Ember.get(Ember.lookup, type);
         Ember.assert("Could not find model at path " + key, type);
@@ -1168,7 +1168,7 @@ DS.Serializer = Ember.Object.extend({
     var mappings = this.mappings,
         reifiedMappings = Ember.Map.create();
 
-    mappings.forEach(function(key, mapping) {
+    mappings.forEach(function(mapping, key) {
       if (typeof key === 'string') {
         var type = Ember.get(Ember.lookup, key);
         Ember.assert("Could not find model at path " + key, type);
@@ -1190,7 +1190,7 @@ DS.Serializer = Ember.Object.extend({
     var configurations = this.configurations,
         reifiedConfigurations = Ember.Map.create();
 
-    configurations.forEach(function(key, mapping) {
+    configurations.forEach(function(mapping, key) {
       if (typeof key === 'string' && key !== 'plurals') {
         var type = Ember.get(Ember.lookup, key);
         Ember.assert("Could not find model at path " + key, type);

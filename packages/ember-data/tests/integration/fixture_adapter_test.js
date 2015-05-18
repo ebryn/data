@@ -73,8 +73,10 @@ module("DS.FixtureAdapter & DS.FixtureSerializer", {
   },
 
   teardown: function() {
-    adapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      adapter.destroy();
+      store.destroy();
+    });
   }
 });
 

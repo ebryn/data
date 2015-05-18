@@ -36,7 +36,9 @@ test("when a store is destroyed, it removes itself as the default store", functi
   var store = DS.Store.create({ isDefaultStore: true });
 
   equal(get(DS, 'defaultStore'), store, "precond - store creates itself as default store");
-  store.destroy();
+  Ember.run(function() {
+    store.destroy();
+  });
 
   equal(get(DS, 'defaultStore'), null, "default store is set to null after previous default was destroyed");
 });
@@ -492,7 +494,9 @@ test("records inside a collection view should have their ids updated", function(
     content: store.all(Person)
   });
 
-  container.appendTo('#qunit-fixture');
+  Ember.run(function() {
+    container.appendTo('#qunit-fixture');
+  });
 
   store.createRecord(Person, {name: 'Tom Dale'});
   store.createRecord(Person, {name: 'Yehuda Katz'});
@@ -710,8 +714,10 @@ module("DS.Store - Adapter Callbacks", {
   },
 
   teardown: function() {
-    stubAdapter.destroy();
-    store.destroy();
+    Ember.run(function() {
+      stubAdapter.destroy();
+      store.destroy();
+    });
   }
 });
 
@@ -732,7 +738,9 @@ module("DS.Store - unload record", {
     });
   },
   teardown: function() {
-    store.destroy();
+    Ember.run(function() {
+      store.destroy();
+    });
   }
 });
 
@@ -811,6 +819,8 @@ test("can commit store after unload record with relationships", function() {
   product = store.find(Product, 1);
   ok(tryToFind, "not found record with id 1");
 
-  store.destroy();
+  Ember.run(function() {
+    store.destroy();
+  });
 
 });

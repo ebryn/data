@@ -20,7 +20,9 @@ module("DS.Serializer", {
   },
 
   teardown: function() {
-    serializer.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+    });
 
     Ember.lookup = originalLookup;
   }

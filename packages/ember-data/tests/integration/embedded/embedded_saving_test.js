@@ -37,8 +37,10 @@ module("Embedded Saving", {
   },
 
   teardown: function() {
-    store.destroy();
-    App.destroy();
+    Ember.run(function() {
+      store.destroy();
+      App.destroy();
+    });
     Ember.lookup = originalLookup;
   }
 });

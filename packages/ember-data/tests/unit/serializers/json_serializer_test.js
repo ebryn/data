@@ -52,7 +52,9 @@ module("DS.JSONSerializer - Mapping API", {
   },
 
   teardown: function() {
-    serializer.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+    });
     window.Address = null;
   }
 });
@@ -259,7 +261,9 @@ module("DS.JSONSerializer - Transform API", {
   },
 
   teardown: function() {
-    serializer.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+    });
   }
 });
 
@@ -305,7 +309,9 @@ module("DS.JSONSerializer - Polymorphism API", {
   },
 
   teardown: function() {
-    serializer.destroy();
+    Ember.run(function() {
+      serializer.destroy();
+    });
   }
 });
 
